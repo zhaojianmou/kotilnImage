@@ -1,0 +1,54 @@
+package com.kele.androidstudio.kotlinimage.base
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.KeyEvent
+import com.kele.androidstudio.kotlinimage.base.api.InitApplication
+import com.kele.androidstudio.kotlinimage.base.api.InitFragment
+
+
+open class BaseFragment : InitFragment() {
+    //TODO 添加Fragment进入退出动画
+
+    override fun initView(savedInstanceState: Bundle?) {
+
+    }
+
+
+    override fun initData() {
+
+    }
+
+
+    override fun onBackPressed() {
+
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return false
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //检查内存泄漏
+        InitApplication.getRefWatcher(activity).watch(activity)
+
+    }
+
+
+}

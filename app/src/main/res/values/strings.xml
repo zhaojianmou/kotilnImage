@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">kotlinImage</string>
+
+    <!-- 登录 -->
+    <string name="login_name">名称</string>
+    <string name="login_pwd">密码</string>
+    <string name="login">登陆</string>
+</resources>
