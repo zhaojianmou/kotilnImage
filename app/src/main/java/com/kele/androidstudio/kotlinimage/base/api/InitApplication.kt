@@ -1,11 +1,9 @@
 package com.kele.androidstudio.kotlinimage.base.api
 
-import android.app.Application
-import android.content.Context
-import com.squareup.leakcanary.RefWatcher
+import android.support.multidex.MultiDexApplication
 
 
-abstract class InitApplication : android.app.Application() {
+abstract class InitApplication : MultiDexApplication() {
 
 
     lateinit var refWatcher: com.squareup.leakcanary.RefWatcher
