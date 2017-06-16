@@ -28,6 +28,7 @@ class LoginActivity : BaseActivity() {
 
     override fun initData() {
         //test
+        //login
 //        AppComponent.getInstance().context()
 //        OkHttpClient.Builder()
 //                .addNetworkInterceptor(StethoInterceptor())
