@@ -9,11 +9,31 @@
     <color name="color_000000">#000000</color>
     <color name="color_00000000">#00000000</color>
 
+    <!--主色调-->
+    <color name="bg_color_413E4A">#413E4A</color>
+    <!--button-->
+    <color name="bg_color_877182">#877182</color>
+    <!--页面背景、输入框-->
+    <color name="bg_color_685562">#685562</color>
+    <!--文本-->
+    <color name="bg_color_6E5C69">#6E5C69</color>
+    <!--进度条-->
+    <color name="bg_color_F8E4C0">#F8E4C0</color>
+    <!--button_H-->
+    <color name="bg_color_B38184">#B38184</color>
+    <!--button_m-->
+    <color name="bg_color_F0B49E">#F0B49E</color>
+    <!--button_l-->
+    <color name="bg_color_F7C7B2">#F7C7B2</color>
+
+
     <color name="bg_color_3c3f41">#3c3f41</color>
     <color name="bg_color_2b2b2b">#2b2b2b</color>
     <color name="bg_color_e6e6e6">#e6e6e6</color>
 
-
+    <color name="text_color_413E4A">#413E4A</color>
+    <color name="text_color_6E5C69">#6E5C69</color>
+    <color name="text_color_F8E4C0">#F8E4C0</color>
 
 
 </resources>

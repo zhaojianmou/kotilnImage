@@ -1,14 +1,22 @@
 package com.kele.androidstudio.kotlinimage.base
 
+import android.app.ActivityManager
 import android.content.Intent
+import android.graphics.Color
 import android.view.KeyEvent
-import com.kele.androidstudio.kotlinimage.base.api.InitActivity
+import com.kele.androidstudio.kotlinimage.base.Impl.InitActivityImpl
 import com.kele.androidstudio.kotlinimage.base.api.InitApplication
-import com.kele.androidstudio.kotlinimage.base.api.InitFragment
 import com.kele.androidstudio.kotlinimage.utils.constant.LeakCanaryUtils
+import android.os.Build
+import android.os.Bundle
+import android.view.View
+import com.kele.androidstudio.kotlinimage.utils.StatusBarUtils
+import android.view.ViewGroup
+import com.kele.androidstudio.kotlinimage.R
 
 
-abstract class BaseActivity : InitActivity() {
+open class BaseActivity : InitActivityImpl() {
+
 
     override fun onStart() {
         super.onStart()
@@ -59,36 +67,6 @@ abstract class BaseActivity : InitActivity() {
                 fragment?.onActivityResult(requestCode, resultCode, data)
             }
         }
-    }
-
-
-//    override fun getCurrFragment(): InitFragment? {
-//        var ft: InitFragment? = null
-//        //TODO 优化getCurrFragment（）
-//        if (supportFragmentManager != null && getFragmentById() != 0) {
-//            var ftInit: InitFragment? = supportFragmentManager.findFragmentById(getFragmentById()) as InitFragment
-//            if (ftInit != null && ftInit.isVisible) {
-//                ft = ftInit
-//                return ft
-//            }
-//        }
-//        return ft
-//    }
-
-    override fun getCurrFragment(): InitFragment? {
-        var ft: InitFragment? = null
-        for (fragment in supportFragmentManager.fragments) {
-            if (fragment != null && fragment!!.isVisible()) {
-                ft = fragment as InitFragment
-                return ft
-            }
-        }
-        return ft
-    }
-
-
-    override fun getFragmentById(): Int {
-        return 0
     }
 
 

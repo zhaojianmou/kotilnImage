@@ -8,6 +8,7 @@ import com.kele.androidstudio.kotlinimage.utils.constant.LeakCanaryUtils
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.bugly.crashreport.CrashReport.UserStrategy
 import android.text.TextUtils
+import com.android.kele.commonlibrary.app.AppUtils
 import com.kele.androidstudio.kotlinimage.utils.Utils
 import java.io.BufferedReader
 import java.io.FileReader
@@ -21,13 +22,15 @@ open class BaseApplication : InitApplication() {
     override fun initAfter() {
         application = this
         //TODO 动态权限处理
-        //TODO 分包处理
+   
 
     }
 
 
     override fun initData() {
         performance()
+        //加载工具包
+        AppUtils.init(this)
 
 
     }

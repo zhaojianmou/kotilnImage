@@ -8,8 +8,12 @@ import com.kele.androidstudio.kotlinimage.base.api.InitFragment
 
 
 open class BaseFragment : InitFragment() {
-    //TODO 添加Fragment进入退出动画
 
+    override fun getLayoutId(): Int {
+        return 0
+    }
+
+    //TODO 添加Fragment进入退出动画
     override fun initView(savedInstanceState: Bundle?) {
 
     }

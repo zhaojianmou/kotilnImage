@@ -11,19 +11,18 @@ import com.kele.androidstudio.kotlinimage.ui.presenter.LoginPersenter
 import kotlinx.android.synthetic.main.activity_login.*
 import java.lang.ref.SoftReference
 
-open class LoginView : BaseView, LoginContract.View, View.OnClickListener {
-    val url = "www.baidu.com";
-    var mActivity: SoftReference<LoginActivity>? = null;
-    var mPersenter: LoginPersenter? = null;
+open class LoginView : LoginContract.View, View.OnClickListener {
+    var mActivity: SoftReference<LoginActivity>? = null
+    var mPersenter: LoginPersenter? = null
 
 
     constructor(activity: LoginActivity) {
-        mActivity = SoftReference(activity);
-        initView();
+        mActivity = SoftReference(activity)
+        initView()
     }
 
     fun setPersenter(persenter: LoginPersenter) {
-        mPersenter = persenter;
+        mPersenter = persenter
     }
 
     fun initView() {

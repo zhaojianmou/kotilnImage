@@ -19,6 +19,7 @@ class LoginActivity : BaseActivity() {
 
 
     override fun initView(savedInstanceState: Bundle?) {
+
         setContentView(R.layout.activity_login)
         var view: LoginView = LoginView(this)
         var persenter: LoginPersenter = LoginPersenter(view)

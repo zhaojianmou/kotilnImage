@@ -4,12 +4,28 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
 abstract class InitFragment : android.support.v4.app.Fragment() {
+    var mInflater: LayoutInflater? = null
 
     override fun onAttach(context: android.content.Context?) {
         super.onAttach(context)
 
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mInflater = inflater
+        if (inflater != null && getLayoutId() != 0) {
+            return inflater.inflate(getLayoutId(), container, false)
+        }
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
 
@@ -18,6 +34,8 @@ abstract class InitFragment : android.support.v4.app.Fragment() {
         initView(savedInstanceState)
         initData()
     }
+
+    abstract fun getLayoutId(): Int
 
     abstract fun initData()
 

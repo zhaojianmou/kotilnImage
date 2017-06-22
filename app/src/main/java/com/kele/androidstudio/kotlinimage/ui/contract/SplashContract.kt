@@ -3,11 +3,11 @@ package com.kele.androidstudio.kotlinimage.ui.contract
 import com.kele.androidstudio.kotlinimage.ui.presenter.BasePresenter
 import com.kele.androidstudio.kotlinimage.ui.view.BaseView
 
-interface LoginContract {
+interface SplashContract {
 
     interface Presenter : BasePresenter {
 
-        fun login(name: String, pwd: String)
+
 
     }
 
