@@ -17,7 +17,7 @@ class Utils {
             var reader: BufferedReader? = null
             try {
                 reader = BufferedReader(FileReader("/proc/$pid/cmdline"))
-                var processName = reader!!.readLine()
+                var processName = reader.readLine()
                 if (!TextUtils.isEmpty(processName)) {
                     processName = processName.trim({ it <= ' ' })
                 }
@@ -27,7 +27,7 @@ class Utils {
             } finally {
                 try {
                     if (reader != null) {
-                        reader!!.close()
+                        reader.close()
                     }
                 } catch (exception: IOException) {
                     exception.printStackTrace()

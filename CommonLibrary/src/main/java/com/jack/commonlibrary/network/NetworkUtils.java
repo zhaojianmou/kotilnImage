@@ -1,4 +1,4 @@
-package com.android.kele.commonlibrary.network;
+package com.jack.commonlibrary.network;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -13,13 +13,15 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.IBinder;
+import android.support.annotation.RequiresApi;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
 
-import com.android.kele.commonlibrary.app.AppUtils;
-import com.android.kele.commonlibrary.utils.LogUtils;
+import com.jack.commonlibrary.app.AppUtils;
+import com.jack.commonlibrary.utils.LogUtils;
 
 import java.lang.reflect.Method;
 
@@ -27,6 +29,7 @@ import java.lang.reflect.Method;
  * @author yuyh.
  * @date 16/4/9.
  */
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class NetworkUtils {
     private static final String TAG = Network.class.getSimpleName();
 
@@ -227,7 +230,7 @@ public class NetworkUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;// 反射失败，默认开启
+        return true; // 反射失败，默认开启
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.android.kele.commonlibrary.network;
+package com.jack.commonlibrary.network;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

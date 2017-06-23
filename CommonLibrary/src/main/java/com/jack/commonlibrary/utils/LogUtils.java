@@ -1,11 +1,11 @@
-package com.android.kele.commonlibrary.utils;
+package com.jack.commonlibrary.utils;
 
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
 
-import com.android.kele.commonlibrary.app.AppUtils;
+import com.jack.commonlibrary.app.AppUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,13 +25,13 @@ public class LogUtils {
     private static Boolean LOG_SWITCH = true; // 日志文件总开关
     private static Boolean LOG_TO_FILE = false; // 日志写入文件开关
     private static String LOG_TAG = "SprintNBA"; // 默认的tag
-    private static char LOG_TYPE = 'v';// 输入日志类型，v代表输出所有信息,w则只输出警告...
-    private static int LOG_SAVE_DAYS = 7;// sd卡中日志文件的最多保存天数
+    private static char LOG_TYPE = 'v'; // 输入日志类型，v代表输出所有信息,w则只输出警告...
+    private static int LOG_SAVE_DAYS = 7; // sd卡中日志文件的最多保存天数
 
-    private final static SimpleDateFormat LOG_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 日志的输出格式
-    private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("yyyy-MM-dd");// 日志文件格式
+    private final static SimpleDateFormat LOG_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 日志的输出格式
+    private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("yyyy-MM-dd"); // 日志文件格式
     private static String LOG_FILE_PATH; // 日志文件保存路径
-    private static String LOG_FILE_NAME;// 日志文件保存名称
+    private static String LOG_FILE_NAME; // 日志文件保存名称
 
     public static void init(Context context) { // 在Application中初始化
         LOG_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + AppUtils.getAppContext().getPackageName();
@@ -69,7 +69,7 @@ public class LogUtils {
         d(LOG_TAG, msg);
     }
 
-    public static void d(String tag, Object msg) {// 调试信息
+    public static void d(String tag, Object msg) { // 调试信息
         d(tag, msg, null);
     }
 
@@ -123,8 +123,9 @@ public class LogUtils {
             } else {
                 Log.v(tag, msg, tr);
             }
-            if (LOG_TO_FILE)
+            if (LOG_TO_FILE) {
                 log2File(String.valueOf(level), tag, msg + tr == null ? "" : "\n" + Log.getStackTraceString(tr));
+            }
         }
     }
 
@@ -157,7 +158,7 @@ public class LogUtils {
     /**
      * 删除指定的日志文件
      */
-    public static void delFile() {// 删除日志文件
+    public static void delFile() { // 删除日志文件
         String needDelFiel = FILE_SUFFIX.format(getDateBefore());
         File file = new File(LOG_FILE_PATH, needDelFiel + LOG_FILE_NAME);
         if (file.exists()) {

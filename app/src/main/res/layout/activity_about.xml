@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/bg_685562"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color_685562"
     android:orientation="vertical"
     tools:context="com.kele.androidstudio.kotlinimage.ui.activity.AboutActivity">
 
@@ -28,25 +28,23 @@
             android:src="@mipmap/ic_launcher_round"/>
 
         <TextView
+            style="@style/text_413E4A_50px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100px"
             android:gravity="center"
-            android:text="@string/acabout_author"
-            android:textColor="@color/text_color_413E4A"
-            android:textSize="50px"/>
+            android:text="@string/acabout_author"/>
 
         <TextView
             android:id="@+id/text"
+            style="@style/text_413E4A_40px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
             android:layout_marginTop="100px"
             android:gravity="left"
-            android:text="@string/acabout_about"
-            android:textColor="@color/text_color_413E4A"
-            android:textSize="40px"/>
+            android:text="@string/acabout_about"/>
 
         <View
             android:layout_width="wrap_content"

@@ -11,7 +11,9 @@ import com.kele.androidstudio.kotlinimage.ui.presenter.SplashPersenter
 import com.kele.androidstudio.kotlinimage.ui.view.SplashView
 
 class SplashActivity : BaseActivity() {
+    val TAG = "SplashActivity"
     //github WoWoViewPager
+
 
     override fun getLayoutId(): Int {
         return R.layout.activity_splash

@@ -5,7 +5,11 @@ import com.kele.androidstudio.kotlinimage.base.BaseFragment
 import com.kele.androidstudio.kotlinimage.ui.activity.SplashActivity
 import com.kele.androidstudio.kotlinimage.ui.contract.SplashContract
 
-class SplashView<T>(t: T) : BaseViewImpl<T>(t), SplashContract.View {
+class SplashView<T> : BaseViewImpl<T>, SplashContract.View {
+
+    constructor(t: T) {
+        init(t)
+    }
 
     override fun titleBar() {
 

@@ -22,12 +22,12 @@
  * #                       `=---='                     #
  * #     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   #
  * #                                                   #
- * #               佛祖保佑         永无BUG              #
+ * #               佛祖保佑         永无BUG            #
  * #                                                   #
  */
 
 
-package com.android.kele.commonlibrary.app;
+package com.jack.commonlibrary.app;
 
 import android.content.Context;
 import android.content.res.AssetManager;

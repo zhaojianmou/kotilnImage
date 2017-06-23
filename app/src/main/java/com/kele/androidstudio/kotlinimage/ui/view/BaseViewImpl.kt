@@ -6,16 +6,17 @@ import com.kele.androidstudio.kotlinimage.ui.presenter.BasePresenter
 import java.lang.ref.SoftReference
 
 
-open abstract class BaseViewImpl<T> {
+abstract class BaseViewImpl<T> {
 
     var mActivity: SoftReference<T>? = null
     var mFragment: SoftReference<T>? = null
     var mPersenter: BasePresenter? = null
 
-    constructor(t: T) {
+
+    fun init(t: T) {
         if (t as? BaseActivity != null) {
             mActivity = SoftReference(t)
-        } else if (t as BaseFragment != null) {
+        } else if (t as? BaseFragment != null) {
             mFragment = SoftReference(t)
         }
         titleBar()

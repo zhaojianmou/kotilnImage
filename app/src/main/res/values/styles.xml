@@ -1,5 +1,6 @@
 <resources>
 
+    <!-- *************************************** theme *************************************** -->
     <!-- Base application theme. -->
     <style name="AppTheme1" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -18,5 +19,34 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+
+    <!-- *************************************** background *************************************** -->
+
+    <!-- 标题颜色 -->
+    <style name="bg_413E4A">
+        <item name="android:background">@color/bg_color_413E4A</item>
+    </style>
+
+    <style name="bg_685562">
+        <item name="android:background">@color/bg_color_685562</item>
+    </style>
+
+
+    <!-- *************************************** text *************************************** -->
+    <style name="text_titlebar_60px">
+        <item name="android:textColor">@color/color_000000</item>
+        <item name="android:textSize">60px</item>
+    </style>
+
+    <style name="text_413E4A_50px">
+        <item name="android:textColor">@color/text_color_413E4A</item>
+        <item name="android:textSize">50px</item>
+    </style>
+
+    <style name="text_413E4A_40px">
+        <item name="android:textColor">@color/text_color_413E4A</item>
+        <item name="android:textSize">40px</item>
+    </style>
+
 
 </resources>

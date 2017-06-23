@@ -6,19 +6,29 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
+import android.view.View
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.ui.activity.AboutActivity
 import com.kele.androidstudio.kotlinimage.ui.contract.SplashContract
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.title_bar_main.*
 
-class MainView<T>(t: T) : BaseViewImpl<T>(t), SplashContract.View, NavigationView.OnNavigationItemSelectedListener {
-
+class MainView<T> : BaseViewImpl<T>, SplashContract.View, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     var navigatonView: NavigationView? = null
     var drawerLayout: DrawerLayout? = null
 
-    override fun titleBar() {
 
+    constructor(t: T) {
+        init(t)
+    }
+
+    override fun titleBar() {
+        getActivity()!!.leftIv.setImageResource(R.mipmap.ic_menu_black_48dp)
+
+        getActivity()!!.left.setOnClickListener(this)
+
+        getActivity()!!.titleTv.setText(R.string.app_name)
 
     }
 
@@ -55,6 +65,18 @@ class MainView<T>(t: T) : BaseViewImpl<T>(t), SplashContract.View, NavigationVie
         }
 
         return true
+    }
+
+
+    override fun onClick(p0: View?) {
+
+        when (p0!!.id) {
+            R.id.left -> drawerLayout!!.openDrawer(GravityCompat.START)
+
+
+        }
+
+
     }
 
 

@@ -10,6 +10,7 @@
 
     <RelativeLayout
         android:id="@+id/main"
+        style="@style/bg_685562"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -51,7 +51,7 @@ open class InitActivityImpl : InitActivity() {
         var ft: InitFragment? = null
         if (supportFragmentManager.fragments != null) {
             for (fragment in supportFragmentManager.fragments) {
-                if (fragment != null && fragment!!.isVisible()) {
+                if (fragment != null && fragment.isVisible()) {
                     ft = fragment as InitFragment
                     return ft
                 }

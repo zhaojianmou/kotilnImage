@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.kele.commonlibrary.utils;
+package com.jack.commonlibrary.utils;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
@@ -25,7 +25,8 @@ import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.android.kele.commonlibrary.app.AppUtils;
+
+import com.jack.commonlibrary.app.AppUtils;
 
 import java.lang.reflect.Field;
 

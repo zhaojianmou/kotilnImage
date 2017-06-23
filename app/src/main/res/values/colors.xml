@@ -9,6 +9,7 @@
     <color name="color_000000">#000000</color>
     <color name="color_00000000">#00000000</color>
 
+    <!-- *************************************** background *************************************** -->
     <!--主色调-->
     <color name="bg_color_413E4A">#413E4A</color>
     <!--button-->
@@ -31,6 +32,7 @@
     <color name="bg_color_2b2b2b">#2b2b2b</color>
     <color name="bg_color_e6e6e6">#e6e6e6</color>
 
+    <!-- *************************************** text *************************************** -->
     <color name="text_color_413E4A">#413E4A</color>
     <color name="text_color_6E5C69">#6E5C69</color>
     <color name="text_color_F8E4C0">#F8E4C0</color>
