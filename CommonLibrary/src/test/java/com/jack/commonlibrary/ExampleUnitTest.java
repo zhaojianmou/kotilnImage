@@ -1,4 +1,4 @@
-package com.android.kele.commonlibrary;
+package com.jack.commonlibrary;
 
 import org.junit.Test;
 

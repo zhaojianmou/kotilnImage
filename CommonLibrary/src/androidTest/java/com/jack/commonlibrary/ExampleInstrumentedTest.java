@@ -1,4 +1,4 @@
-package com.android.kele.commonlibrary;
+package com.jack.commonlibrary;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
