@@ -2,6 +2,7 @@ package com.kele.androidstudio.kotlinimage.utils.constant;
 
 
 import android.content.Context;
+import android.os.Build;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -27,22 +28,24 @@ public class LeakCanaryUtils {
             InitApplication.application.setRefWatcher(LeakCanary.install(InitApplication.application));
             //Stetho web调试工具
             Stetho.initializeWithDefaults(InitApplication.application);
-            //android 调试工具
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                    .detectAll()
-                    //会造成屏幕闪烁，不过一般的设备可能没有这个功能。
-                    .penaltyFlashScreen()
-                    //记录到 dropbox 系统日志目录中（/data/system/dropbox）
-                    //命令 adb shell dumpsys dropbox dataappstrictmode  --print   /   adb shell dumpsys dropbox --print >>log.java
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                //android 调试工具
+                StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                        .detectAll()
+                        //会造成屏幕闪烁，不过一般的设备可能没有这个功能。
+                        .penaltyFlashScreen()
+                        //记录到 dropbox 系统日志目录中（/data/system/dropbox）
+                        //命令 adb shell dumpsys dropbox dataappstrictmode  --print   /   adb shell dumpsys dropbox --print >>log.java
 //                    .penaltyDropBox()
-                    //打出log提示
-                    .penaltyLog()
-                    .build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
+                        //打出log提示
+                        .penaltyLog()
+                        .build());
+                StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                        .detectAll()
+                        .penaltyLog()
 //                    .penaltyDropBox()
-                    .build());
+                        .build());
+            }
         } else {
             InitApplication.application.setRefWatcher(RefWatcher.DISABLED);
         }

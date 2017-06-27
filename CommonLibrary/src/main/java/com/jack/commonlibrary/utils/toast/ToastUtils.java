@@ -3,7 +3,8 @@ package com.jack.commonlibrary.utils.toast;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.yuyh.library.AppUtils;
+import com.jack.commonlibrary.app.AppUtils;
+
 
 /**
  * Toast工具类，解决多个Toast同时出现的问题

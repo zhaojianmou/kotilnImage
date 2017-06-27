@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.jack.Commonlibrary.R;
+import com.jack.commonlibrary.R;
 
 
 /**

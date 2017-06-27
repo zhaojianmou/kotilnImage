@@ -26,20 +26,21 @@ abstract class InitFragment : android.support.v4.app.Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView(view, savedInstanceState)
+        initData()
     }
 
 
     override fun onActivityCreated(savedInstanceState: android.os.Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initView(savedInstanceState)
-        initData()
+
     }
 
     abstract fun getLayoutId(): Int
 
     abstract fun initData()
 
-    abstract fun initView(savedInstanceState: android.os.Bundle?)
+    abstract fun initView(view: View?, savedInstanceState: android.os.Bundle?)
 
     /**
      * 给fragment添加返回键
