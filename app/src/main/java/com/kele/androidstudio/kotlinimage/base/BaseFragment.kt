@@ -3,18 +3,20 @@ package com.kele.androidstudio.kotlinimage.base
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
 import com.kele.androidstudio.kotlinimage.base.api.InitApplication
 import com.kele.androidstudio.kotlinimage.base.api.InitFragment
 
 
 open class BaseFragment : InitFragment() {
 
+
     override fun getLayoutId(): Int {
         return 0
     }
 
     //TODO 添加Fragment进入退出动画
-    override fun initView(savedInstanceState: Bundle?) {
+    override fun initView(view: View?, savedInstanceState: Bundle?) {
 
     }
 

@@ -1,8 +1,10 @@
 package com.kele.androidstudio.kotlinimage.base
 
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.kele.androidstudio.kotlinimage.BuildConfig
 import com.kele.androidstudio.kotlinimage.base.api.InitApplication
 import com.kele.androidstudio.kotlinimage.constant.AppConstant
+import com.kele.androidstudio.kotlinimage.image.ImageManager
 import com.kele.androidstudio.kotlinimage.utils.constant.ExitApp
 import com.kele.androidstudio.kotlinimage.utils.constant.LeakCanaryUtils
 import com.tencent.bugly.crashreport.CrashReport
@@ -26,6 +28,8 @@ open class BaseApplication : InitApplication() {
         performance()
         //加载工具包
 //        AppUtils.init(this)
+        ImageManager.init(this)
+        Fresco.initialize(this)
 
 
     }
