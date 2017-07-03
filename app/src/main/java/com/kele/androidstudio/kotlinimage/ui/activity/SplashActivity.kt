@@ -29,11 +29,9 @@ class SplashActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initData() {
-        UIManager.splashToMain(this)
+        UIManager.splashToFilter(this)
         finish()
     }
-
-
 
 
 }
