@@ -1,6 +1,5 @@
 package com.kele.androidstudio.kotlinimage.ui.activity
 
-import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Environment
@@ -42,7 +41,7 @@ class FilterActivity : BaseActivity(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        var gpuImage = GPUImage(this);
+        var gpuImage = GPUImage(this)
         var bt = (imageView.drawable as BitmapDrawable).bitmap
         gpuImage.setImage(bt)
         gpuImage.setFilter(GPUImageUtil.getFilter(5))

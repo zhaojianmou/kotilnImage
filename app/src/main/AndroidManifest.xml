@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -37,7 +38,7 @@
             android:name=".ui.activity.SplashActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            android:theme="@style/AppTheme.FullScreen">
             //全屏
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -58,6 +59,10 @@
         <activity
             android:name=".ui.activity.FilterActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.CameraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen"/>
     </application>
 
 </manifest>
