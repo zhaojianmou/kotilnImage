@@ -1,5 +1,9 @@
 package com.kele.androidstudio.kotlinimage.base
 
+import com.baidu.mapapi.CoordType
+import com.baidu.mapapi.ModuleName
+import com.baidu.mapapi.OpenLogUtil
+import com.baidu.mapapi.SDKInitializer
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.kele.androidstudio.kotlinimage.BuildConfig
 import com.kele.androidstudio.kotlinimage.base.api.InitApplication
@@ -30,13 +34,23 @@ open class BaseApplication : InitApplication() {
 //        AppUtils.init(this)
         ImageManager.init(this)
         Fresco.initialize(this)
-
+        initBaiduMap()
 
     }
 
     override fun initBefore() {
 
 
+    }
+
+    fun initBaiduMap() {
+        //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        //注意该方法要再setContentView方法之前实现
+        SDKInitializer.initialize(applicationContext)
+        //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.
+        //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
+        SDKInitializer.setCoordType(CoordType.BD09LL)
+        OpenLogUtil.setModuleLogEnable(ModuleName.TILE_OVERLAY_MODULE, true)
     }
 
     override fun performance() {

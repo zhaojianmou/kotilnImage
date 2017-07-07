@@ -8,6 +8,7 @@ import android.support.annotation.RequiresApi
 import com.kele.androidstudio.kotlinimage.ui.activity.CameraActivity
 import com.kele.androidstudio.kotlinimage.ui.activity.FilterActivity
 import com.kele.androidstudio.kotlinimage.ui.activity.MainActivity
+import com.kele.androidstudio.kotlinimage.ui.activity.MapActivity
 
 class UIManager {
     companion object {
@@ -25,6 +26,11 @@ class UIManager {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         fun splashToCamera(activity: Activity) {
             activity.startActivity(Intent(activity, CameraActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
+        }
+
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        fun splashToMap(activity: Activity) {
+            activity.startActivity(Intent(activity, MapActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
         }
 
 
