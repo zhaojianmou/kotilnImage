@@ -85,6 +85,7 @@ dependencies {
     //rxandroid
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     //photodraweeview
     compile 'me.relex:photodraweeview:1.1.2'
     //fresco

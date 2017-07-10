@@ -27,8 +27,6 @@ class SplashActivity : BaseActivity() {
         var view = SplashView<SplashActivity>(t = this)
         var persenter = SplashPersenter<SplashView<SplashActivity>>(view)
         view.setPersenter(persenter)
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

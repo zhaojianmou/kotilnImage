@@ -1,6 +1,9 @@
 package com.kele.androidstudio.kotlinimage.utils.baidu;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -15,11 +18,10 @@ import com.kele.androidstudio.kotlinimage.R;
 public class LocationUtils {
 
 
-    public static void locationMap(BaiduMap mBaiduMap, LatLng location) {
+    public static void locationMap(BaiduMap mBaiduMap, LatLng location, Bitmap bitmap) {
         if (mBaiduMap == null || location == null) {
             return;
         }
-
         //  开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
         // 构造定位数据
@@ -33,13 +35,16 @@ public class LocationUtils {
         // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
 //        String path = "/storage/emulated/0/DCIM/Camera/20170222_152004.jpg";
 //        File file = new File(path);
-        BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher);
+        BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory.fromBitmap(bitmap);
+//                fromResource(R.mipmap.ic_launcher);
 //                .fromFile(path);
         //      fromResource(R.mipmap.ic_launcher);
-        MyLocationConfiguration config = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.NORMAL, true, mCurrentMarker);
+        MyLocationConfiguration config = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.FOLLOWING, true, mCurrentMarker);
         mBaiduMap.setMyLocationConfiguration(config);
-        //动画
+        //设置地图的状态
         MapStatus.Builder builder = new MapStatus.Builder();
+        //设置地图的缩放程度
+        builder.zoom(18.0f);
         builder.overlook(0);
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
         // 当不需要定位图层时关闭定位图层

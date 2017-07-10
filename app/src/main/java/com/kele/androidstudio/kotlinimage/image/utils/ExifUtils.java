@@ -53,6 +53,24 @@ public class ExifUtils {
         return location;
     }
 
+    public static Boolean isGpsExist(String imagePath) {
+        Boolean isGps = false;
+        try {
+            ExifInterface exifInterface = new ExifInterface(imagePath);
+            String latValue = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+            String lngValue = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
+            String latRef = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
+            String lngRef = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
+            if (latValue != null && latRef != null && lngValue != null && lngRef != null) {
+                isGps = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isGps;
+    }
+
 
     private static float convertRationalLatLonToFloat(String rationalString, String ref) {
 
