@@ -34,17 +34,15 @@ class SplashActivity : BaseActivity() {
         if (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 5)
         } else {
-            UIManager.splashToMap(this)
+            UIManager.splashToMain(this)
         }
-
-//        finish()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.size != 1 || grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            UIManager.splashToMap(this)
+            UIManager.splashToMain(this)
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }

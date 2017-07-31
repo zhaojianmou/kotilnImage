@@ -15,26 +15,10 @@ import com.kele.androidstudio.kotlinimage.image.utils.ExifUtils
 import com.kele.androidstudio.kotlinimage.utils.baidu.LocationUtils
 import kotlinx.android.synthetic.main.activity_localmap.*
 
-/**
- * 图片gps定位
- *
- */
-class LocalMapFragment : BaseFragment() {
+class ListMapFragment : BaseFragment() {
 
     var imagePath = ""
     var mBaiduMap: BaiduMap? = null
-
-
-    companion object {
-        val PATH = "path"
-        fun getInstance(path: String): LocalMapFragment {
-            var bundle = Bundle()
-            bundle.putString(PATH, path)
-            var fragment = LocalMapFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_localmap
@@ -42,9 +26,6 @@ class LocalMapFragment : BaseFragment() {
 
     override fun initView(view: View?, savedInstanceState: Bundle?) {
         super.initView(view, savedInstanceState)
-        if (TextUtils.isEmpty(imagePath)) {
-            imagePath = arguments.getString(PATH)
-        }
         mBaiduMap = activity.textureMapView.map
         if (!TextUtils.isEmpty(imagePath) && ExifUtils.isGpsExist(imagePath)) {
             var location = ExifUtils.getPhotoLocation(imagePath)
@@ -52,7 +33,6 @@ class LocalMapFragment : BaseFragment() {
             setMapTag(latLng, imagePath)
         }
     }
-
 
     fun setMapTag(latLng: LatLng, path: String) {
         Glide.with(activity).asBitmap().load("file://" + path).into(object : SimpleTarget<Bitmap>(80, 80) {
@@ -94,4 +74,6 @@ class LocalMapFragment : BaseFragment() {
         activity.textureMapView.onDestroy()
 
     }
+
+
 }

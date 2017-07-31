@@ -1,10 +1,9 @@
 package com.kele.androidstudio.kotlinimage.base
 
 import com.baidu.mapapi.CoordType
-import com.baidu.mapapi.ModuleName
-import com.baidu.mapapi.OpenLogUtil
 import com.baidu.mapapi.SDKInitializer
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.jack.commonlibrary.app.AppUtils
 import com.kele.androidstudio.kotlinimage.BuildConfig
 import com.kele.androidstudio.kotlinimage.base.api.InitApplication
 import com.kele.androidstudio.kotlinimage.constant.AppConstant
@@ -22,8 +21,6 @@ open class BaseApplication : InitApplication() {
 
     override fun initAfter() {
         application = this
-        //TODO 动态权限处理
-
 
     }
 
@@ -31,7 +28,7 @@ open class BaseApplication : InitApplication() {
     override fun initData() {
         performance()
         //加载工具包
-//        AppUtils.init(this)
+        AppUtils.init(this)
         ImageManager.init(this)
         Fresco.initialize(this)
         initBaiduMap()
@@ -44,19 +41,19 @@ open class BaseApplication : InitApplication() {
     }
 
     fun initBaiduMap() {
-        //在使用SDK各组件之前初始化context信息，传入ApplicationContext
-        //注意该方法要再setContentView方法之前实现
+        // 在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        // 注意该方法要再setContentView方法之前实现
         SDKInitializer.initialize(applicationContext)
-        //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.
-        //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
+        // 自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.
+        // 包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
         SDKInitializer.setCoordType(CoordType.BD09LL)
-        OpenLogUtil.setModuleLogEnable(ModuleName.TILE_OVERLAY_MODULE, true)
+        // OpenLogUtil.setModuleLogEnable(ModuleName.TILE_OVERLAY_MODULE, true)
     }
 
     override fun performance() {
         LeakCanaryUtils.checkLeakCanary()
 
-        //bugly异常信息统计
+        // bugly异常信息统计
         // 设置是否为上报进程
         val strategy = UserStrategy(applicationContext)
         strategy.isUploadProcess = (applicationContext.packageName == null || applicationContext.packageName.equals(Utils.getProcessName(android.os.Process.myPid())))

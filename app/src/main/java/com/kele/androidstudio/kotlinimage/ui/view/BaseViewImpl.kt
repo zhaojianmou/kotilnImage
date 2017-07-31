@@ -12,8 +12,12 @@ abstract class BaseViewImpl<T> {
     var mFragment: SoftReference<T>? = null
     var mPersenter: BasePresenter? = null
 
+    constructor(t: T) {
+        setActivity(t)
+    }
 
-    fun init(t: T) {
+
+    fun setActivity(t: T) {
         if (t as? BaseActivity != null) {
             mActivity = SoftReference(t)
         } else if (t as? BaseFragment != null) {

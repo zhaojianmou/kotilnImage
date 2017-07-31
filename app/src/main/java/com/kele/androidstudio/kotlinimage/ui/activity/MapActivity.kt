@@ -7,11 +7,15 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.PermissionChecker
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.base.BaseActivity
+import com.kele.androidstudio.kotlinimage.constant.UIConstant
 import com.kele.androidstudio.kotlinimage.ui.fragment.LocalMapFragment
+import com.kele.androidstudio.kotlinimage.ui.fragment.TrackMapFragment
 
 class MapActivity : BaseActivity() {
 
     var path = ""
+    var type = UIConstant.TYPE_IMAGE
+
 
     override fun getLayoutId(): Int {
         return R.layout.activity_map
@@ -19,6 +23,9 @@ class MapActivity : BaseActivity() {
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
+        if (savedInstanceState != null) {
+            type = savedInstanceState.getString(UIConstant.MAP_TYPE, UIConstant.TYPE_IMAGE)
+        }
     }
 
     override fun initData() {
@@ -31,8 +38,16 @@ class MapActivity : BaseActivity() {
     }
 
     fun addFragment() {
-//        path = "/storage/emulated/0/DCIM/IMG_6424.jpg"
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, LocalMapFragment.getInstance(path)).commitAllowingStateLoss()
+        path = "/storage/emulated/0/DCIM/IMG_6424.jpg"
+        var beginTransaction = supportFragmentManager.beginTransaction()
+        if (type.equals(UIConstant.TYPE_IMAGE)) {
+            beginTransaction.replace(R.id.frameLayout, LocalMapFragment.getInstance(path))
+        } else {
+            beginTransaction.replace(R.id.frameLayout, TrackMapFragment.getInstance())
+        }
+        beginTransaction.commitAllowingStateLoss()
+
+
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

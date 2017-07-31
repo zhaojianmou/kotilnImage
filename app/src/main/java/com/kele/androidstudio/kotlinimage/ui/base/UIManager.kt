@@ -5,10 +5,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
 import android.support.annotation.RequiresApi
-import com.kele.androidstudio.kotlinimage.ui.activity.CameraActivity
-import com.kele.androidstudio.kotlinimage.ui.activity.FilterActivity
-import com.kele.androidstudio.kotlinimage.ui.activity.MainActivity
-import com.kele.androidstudio.kotlinimage.ui.activity.MapActivity
+import com.kele.androidstudio.kotlinimage.ui.activity.*
 
 class UIManager {
     companion object {
@@ -16,6 +13,11 @@ class UIManager {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         fun splashToMain(activity: Activity) {
             activity.startActivity(Intent(activity, MainActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
+        }
+
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        fun splashToBrowse(activity: Activity) {
+            activity.startActivity(Intent(activity, BrowseActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
         }
 
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

@@ -18,10 +18,10 @@ class MainView<T> : BaseViewImpl<T>, SplashContract.View, NavigationView.OnNavig
     var navigatonView: NavigationView? = null
     var drawerLayout: DrawerLayout? = null
 
-
-    constructor(t: T) {
-        init(t)
+    constructor(t: T) : super(t) {
+        setActivity(t)
     }
+
 
     override fun titleBar() {
         getActivity()!!.leftIv.setImageResource(R.mipmap.ic_menu_black_48dp)

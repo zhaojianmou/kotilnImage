@@ -8,12 +8,10 @@ import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.base.BaseActivity
 import com.kele.androidstudio.kotlinimage.constant.HttpConstant
 import com.kele.androidstudio.kotlinimage.image.ImageManager
-import com.kele.androidstudio.kotlinimage.ui.presenter.MainPersenter
-import com.kele.androidstudio.kotlinimage.ui.view.MainView
 import kotlinx.android.synthetic.main.activity_photobrowse.*
 
-class MainActivity : BaseActivity() {
-    val TAG = "MainActivity"
+class BrowseActivity : BaseActivity() {
+    val TAG = "BrowseActivity"
 
 
     override fun getLayoutId(): Int {
@@ -21,8 +19,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        var view = MainView<MainActivity>()
-        var presenter = MainPersenter<MainView<MainActivity>>(view)
+//        var view = MainView<MainActivity>(this)
+//        var presenter = MainPersenter<MainView<MainActivity>>(view)
 //        view.setPersenter(presenter)
 
     }
