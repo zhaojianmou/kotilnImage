@@ -9,6 +9,7 @@ import android.widget.SeekBar
 import com.bumptech.glide.Glide
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.base.BaseActivity
+import com.kele.androidstudio.kotlinimage.constant.UIConstant
 import com.kele.androidstudio.kotlinimage.image.filter.GPUImageUtil
 import jp.co.cyberagent.android.gpuimage.GPUImage
 import kotlinx.android.synthetic.main.activity_filter.*
@@ -16,7 +17,8 @@ import kotlinx.android.synthetic.main.activity_filter.*
 class FilterActivity : BaseActivity(), OnClickListener {
 
 
-//    var gpuImage: GPUImage? = null
+    //    var gpuImage: GPUImage? = null
+    var path = ""
 
 
     override fun getLayoutId(): Int {
@@ -25,12 +27,15 @@ class FilterActivity : BaseActivity(), OnClickListener {
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
+        if (intent != null && intent.extras != null) {
+            path = intent.extras.getString(UIConstant.IMAGE_PATH)
+        }
     }
 
     override fun initData() {
         super.initData()
 
-        var path: String = Environment.getExternalStorageDirectory().absolutePath + "/UCDownloads/11.jpg"
+//        var path: String = Environment.getExternalStorageDirectory().absolutePath + "/UCDownloads/11.jpg"
 
         val into = Glide.with(this).load(path).into(imageView)
 

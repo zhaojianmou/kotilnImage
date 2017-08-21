@@ -17,6 +17,13 @@
         &#160;APP版本：1.0.1 \n\n
     </string>
 
+    <string name="browse_location">位置</string>
+    <string name="browse_show">浏览</string>
+    <string name="bar_editor">编辑</string>
+
+    <!-- *************************************** BaiduMap *************************************** -->
+    <string name="map_location">位置</string>
+
 
     <!-- *************************************** filter *************************************** -->
     <string name="filter_none">Original</string>
@@ -62,11 +69,6 @@
     <string name="filter_skinwhiten">SkinWhiten</string>
     <string name="filter_crayon">Crayon</string>
     <string name="filter_sketch">Sketch</string>
-
-
-
-
-
 
 
 </resources>

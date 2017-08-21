@@ -54,6 +54,16 @@
         <item name="android:textSize">60px</item>
     </style>
 
+    <style name="text_titlebar_50px">
+        <item name="android:textColor">@color/color_000000</item>
+        <item name="android:textSize">50px</item>
+    </style>
+
+    <style name="text_titlebar_45px">
+        <item name="android:textColor">@color/color_000000</item>
+        <item name="android:textSize">45px</item>
+    </style>
+
     <style name="text_413E4A_50px">
         <item name="android:textColor">@color/text_color_413E4A</item>
         <item name="android:textSize">50px</item>

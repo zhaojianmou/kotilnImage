@@ -23,8 +23,9 @@ class MapActivity : BaseActivity() {
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
-        if (savedInstanceState != null) {
-            type = savedInstanceState.getString(UIConstant.MAP_TYPE, UIConstant.TYPE_IMAGE)
+        if (intent != null && intent.extras != null) {
+            path = intent.extras.getString(UIConstant.IMAGE_PATH)
+//            type = intent.getStringExtra(UIConstant.MAP_TYPE)
         }
     }
 
@@ -38,7 +39,7 @@ class MapActivity : BaseActivity() {
     }
 
     fun addFragment() {
-        path = "/storage/emulated/0/DCIM/IMG_6424.jpg"
+//        path = "/storage/emulated/0/DCIM/IMG_6424.jpg"
         var beginTransaction = supportFragmentManager.beginTransaction()
         if (type.equals(UIConstant.TYPE_IMAGE)) {
             beginTransaction.replace(R.id.frameLayout, LocalMapFragment.getInstance(path))
@@ -56,6 +57,11 @@ class MapActivity : BaseActivity() {
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 

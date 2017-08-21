@@ -31,10 +31,12 @@ class SplashActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initData() {
-        if (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 5)
+        if (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ||
+                PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE), 5)
         } else {
-            UIManager.splashToMain(this)
+            UIManager.toMain(this)
+            finish()
         }
     }
 
@@ -42,7 +44,8 @@ class SplashActivity : BaseActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.size != 1 || grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            UIManager.splashToMain(this)
+            UIManager.toMain(this)
+            finish()
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }

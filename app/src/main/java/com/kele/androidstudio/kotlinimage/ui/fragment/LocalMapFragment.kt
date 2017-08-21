@@ -3,6 +3,7 @@ package com.kele.androidstudio.kotlinimage.ui.fragment
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.KeyEvent
 import android.view.View
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
@@ -14,6 +15,7 @@ import com.kele.androidstudio.kotlinimage.base.BaseFragment
 import com.kele.androidstudio.kotlinimage.image.utils.ExifUtils
 import com.kele.androidstudio.kotlinimage.utils.baidu.LocationUtils
 import kotlinx.android.synthetic.main.activity_localmap.*
+import kotlinx.android.synthetic.main.title_bar_main.*
 
 /**
  * 图片gps定位
@@ -51,6 +53,10 @@ class LocalMapFragment : BaseFragment() {
             var latLng = LocationUtils.gpsToBd09ll(LatLng(location.latitude, location.longitude))
             setMapTag(latLng, imagePath)
         }
+
+        getActivity()!!.left.setOnClickListener(View.OnClickListener { activity.finish() })
+
+        getActivity()!!.titleTv.setText(R.string.map_location)
     }
 
 
@@ -89,9 +95,11 @@ class LocalMapFragment : BaseFragment() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         Glide.get(activity).clearMemory()
-        activity.textureMapView.onDestroy()
-
+        if (activity.textureMapView != null) {
+            activity.textureMapView.onDestroy()
+        }
+        super.onDestroy()
     }
+
 }

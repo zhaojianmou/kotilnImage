@@ -1,17 +1,20 @@
 package com.kele.androidstudio.kotlinimage.ui.activity
 
-import android.app.Activity
-import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
+import android.view.View
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.base.BaseActivity
-import com.kele.androidstudio.kotlinimage.constant.HttpConstant
-import com.kele.androidstudio.kotlinimage.image.ImageManager
+import com.kele.androidstudio.kotlinimage.constant.UIConstant
+import com.kele.androidstudio.kotlinimage.ui.base.UIManager
 import kotlinx.android.synthetic.main.activity_photobrowse.*
+import kotlinx.android.synthetic.main.title_bar_main.*
 
-class BrowseActivity : BaseActivity() {
+class BrowseActivity : BaseActivity(), View.OnClickListener {
     val TAG = "BrowseActivity"
+    var path = ""
 
 
     override fun getLayoutId(): Int {
@@ -19,28 +22,33 @@ class BrowseActivity : BaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-//        var view = MainView<MainActivity>(this)
-//        var presenter = MainPersenter<MainView<MainActivity>>(view)
-//        view.setPersenter(presenter)
+        if (intent != null && intent.extras != null) {
+            path = intent.extras.getString(UIConstant.IMAGE_PATH)
+        }
+
+        right.setOnClickListener(this)
+
+        titleTv.setText(R.string.browse_show)
+        rightTv.setText(R.string.bar_editor)
 
     }
 
     override fun initData() {
-//        MediaContent.sendGetContent(this)
-
-        val list = ImageManager.getImageProvide().images
-//        for (path: String in list) {
-//            Log.e(TAG, "" + path)
-//        }
-//        imageView.setPhotoUri(Uri.parse("file://" + list[5]))
-        imageView.setPhotoUri(Uri.parse(HttpConstant.IMAGE))
+        //test HttpConstant.IMAGE
+        imageView.setPhotoUri(Uri.parse(path))
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ImageManager.SELECT_PIC && resultCode == Activity.RESULT_OK) {
-//            Log.e(TAG, "" + MediaContent.getPathContent(data))
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.right -> {
+                var bundler = Bundle()
+                bundler.putString(UIConstant.IMAGE_PATH, path)
+                UIManager.toFilter(this, bundler)
+
+            }
+
         }
     }
 

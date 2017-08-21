@@ -18,6 +18,9 @@ import com.kele.androidstudio.kotlinimage.utils.Utils
 open class BaseApplication : InitApplication() {
     //动画组件
 
+    //http://www.bbtexiao.com/site/free
+    //宝宝特效   key:  c4a9c1f2148d92874e9e488b8b20617f
+
 
     override fun initAfter() {
         application = this

@@ -7,8 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="180px"
-        android:background="@color/bg_color_413E4A"
-        android:visibility="gone">
+        android:background="@color/bg_color_413E4A">
 
         <LinearLayout
             android:id="@+id/left"
@@ -25,9 +24,11 @@
 
             <TextView
                 android:id="@+id/leftTv"
-                android:layout_width="wrap_content"
+                style="@style/text_titlebar_50px"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:gravity="center"/>
         </LinearLayout>
 
 
@@ -49,8 +50,10 @@
 
             <TextView
                 android:id="@+id/rightTv"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
+                style="@style/text_titlebar_50px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"/>
 
             <ImageView
                 android:id="@+id/rightIv"

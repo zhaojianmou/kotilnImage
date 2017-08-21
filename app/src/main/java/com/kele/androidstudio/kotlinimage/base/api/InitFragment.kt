@@ -42,6 +42,7 @@ abstract class InitFragment : android.support.v4.app.Fragment() {
 
     abstract fun initView(view: View?, savedInstanceState: android.os.Bundle?)
 
+
     /**
      * 给fragment添加返回键
      */

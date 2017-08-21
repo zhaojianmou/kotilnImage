@@ -31,6 +31,10 @@ open class BaseFragment : InitFragment() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            activity.finish()
+            return true
+        }
         return false
     }
 
