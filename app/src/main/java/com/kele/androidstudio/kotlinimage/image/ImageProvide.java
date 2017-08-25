@@ -45,6 +45,10 @@ public class ImageProvide {
         return list;
     }
 
+    public List<String> getGPSImages() {
+        return getGPSImages(null);
+    }
+
 
     public List<String> getGPSImages(String where) {
         List<String> list = new ArrayList<String>();

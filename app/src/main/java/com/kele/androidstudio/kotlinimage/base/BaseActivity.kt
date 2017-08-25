@@ -9,6 +9,7 @@ import com.kele.androidstudio.kotlinimage.base.api.InitApplication
 import com.kele.androidstudio.kotlinimage.utils.constant.LeakCanaryUtils
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.View
 import com.kele.androidstudio.kotlinimage.utils.StatusBarUtils
 import android.view.ViewGroup
@@ -66,6 +67,42 @@ open class BaseActivity : InitActivityImpl() {
             for (fragment in supportFragmentManager.fragments) {
                 fragment?.onActivityResult(requestCode, resultCode, data)
             }
+        }
+    }
+
+    protected fun addFragment(i: Int, fragment: Fragment) {
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.add(i, fragment, fragment.javaClass.simpleName)
+        beginTransaction.setTransition(0)
+        beginTransaction.addToBackStack(fragment.javaClass.simpleName)
+        try {
+            beginTransaction.commitAllowingStateLoss()
+        } catch (e: IllegalStateException) {
+        }
+    }
+
+    protected fun addFragment(i: Int, fragment: Fragment, z: Boolean) {
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.add(i, fragment, fragment.javaClass.name)
+        if (z) {
+            beginTransaction.addToBackStack(fragment.javaClass.simpleName)
+        }
+        try {
+            beginTransaction.commitAllowingStateLoss()
+        } catch (e: IllegalStateException) {
+        }
+    }
+
+    protected fun replaceFragment(i: Int, fragment: Fragment, z: Boolean) {
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.replace(i, fragment, fragment.javaClass.simpleName)
+        beginTransaction.setTransition(0)
+        if (z) {
+            beginTransaction.addToBackStack(fragment.javaClass.simpleName)
+        }
+        try {
+            beginTransaction.commitAllowingStateLoss()
+        } catch (e: IllegalStateException) {
         }
     }
 

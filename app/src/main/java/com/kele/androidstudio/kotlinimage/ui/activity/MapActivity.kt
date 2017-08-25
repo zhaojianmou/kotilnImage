@@ -8,8 +8,11 @@ import android.support.v4.content.PermissionChecker
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.base.BaseActivity
 import com.kele.androidstudio.kotlinimage.constant.UIConstant
+import com.kele.androidstudio.kotlinimage.ui.fragment.ListMapFragment
 import com.kele.androidstudio.kotlinimage.ui.fragment.LocalMapFragment
 import com.kele.androidstudio.kotlinimage.ui.fragment.TrackMapFragment
+import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.functions.Consumer
 
 class MapActivity : BaseActivity() {
 
@@ -24,26 +27,31 @@ class MapActivity : BaseActivity() {
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
         if (intent != null && intent.extras != null) {
-            path = intent.extras.getString(UIConstant.IMAGE_PATH)
-//            type = intent.getStringExtra(UIConstant.MAP_TYPE)
+            path = intent.extras.getString(UIConstant.IMAGE_PATH, "")
+            type = intent.getStringExtra(UIConstant.MAP_TYPE)
         }
     }
 
     override fun initData() {
         super.initData()
-        if (PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 5)
-        } else {
-            addFragment()
-        }
+        RxPermissions(this).request(Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(Consumer<Boolean> { granted: Boolean ->
+            if (granted) {
+                addFragment()
+            } else {
+
+            }
+        })
     }
 
     fun addFragment() {
-//        path = "/storage/emulated/0/DCIM/IMG_6424.jpg"
         var beginTransaction = supportFragmentManager.beginTransaction()
         if (type.equals(UIConstant.TYPE_IMAGE)) {
+            //地图上单个图片展示
             beginTransaction.replace(R.id.frameLayout, LocalMapFragment.getInstance(path))
+        } else if (type.equals(UIConstant.TYPE_LIST)) {
+            beginTransaction.replace(R.id.frameLayout, ListMapFragment.getInstance())
         } else {
+            //地图上多个图片展示
             beginTransaction.replace(R.id.frameLayout, TrackMapFragment.getInstance())
         }
         beginTransaction.commitAllowingStateLoss()
@@ -51,13 +59,6 @@ class MapActivity : BaseActivity() {
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (grantResults.size != 1 || grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            addFragment()
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
-    }
 
     override fun onBackPressed() {
         super.onBackPressed()

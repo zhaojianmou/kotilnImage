@@ -1,6 +1,8 @@
 package com.kele.androidstudio.kotlinimage.ui.adapter
 
 import android.app.Activity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
@@ -9,7 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.kele.androidstudio.kotlinimage.R
+import com.bumptech.glide.request.RequestOptions
+import com.kele.androidstudio.kotlinimage.utils.GlideUtils
+
 
 class ShowImageAdapter : Adapter<ShowImageAdapter.ItemHolder>, View.OnClickListener {
 
@@ -34,7 +40,12 @@ class ShowImageAdapter : Adapter<ShowImageAdapter.ItemHolder>, View.OnClickListe
     override fun onBindViewHolder(holder: ShowImageAdapter.ItemHolder?, position: Int) {
         if (holder != null) {
             holder.cardView!!.setTag(position)
-            Glide.with(context).load(list!![position]).into(holder.iamge)
+//            holder.iamge!!.setImageResource(R.mipmap.ic_launcher)
+//
+//            var tag = holder.iamge!!.getTag(R.id.image)
+//            holder.iamge!!.setTag(R.id.image, list!![position])
+
+            GlideUtils.loadImage(list!![position], holder.iamge!!)
         }
 
     }

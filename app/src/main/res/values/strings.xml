@@ -9,20 +9,6 @@
     <string name="home">主页</string>
     <string name="about">关于</string>
 
-    <!--关于-->
-    <string name="acabout_author">联系作者</string>
-    <string name="acabout_about">
-        &#160;&#160;Email: zjmgithub@163.com \n\n
-        &#160;Github: https://github.com/zhaojianmou/kotilnImage \n\n
-        &#160;APP版本：1.0.1 \n\n
-    </string>
-
-    <string name="browse_location">位置</string>
-    <string name="browse_show">浏览</string>
-    <string name="bar_editor">编辑</string>
-
-    <!-- *************************************** BaiduMap *************************************** -->
-    <string name="map_location">位置</string>
 
 
     <!-- *************************************** filter *************************************** -->
@@ -69,6 +55,26 @@
     <string name="filter_skinwhiten">SkinWhiten</string>
     <string name="filter_crayon">Crayon</string>
     <string name="filter_sketch">Sketch</string>
+
+    <!--关于-->
+    <string name="acabout_author">联系作者</string>
+    <string name="acabout_about">
+        &#160;&#160;Email: zjmgithub@163.com \n\n
+        &#160;Github: https://github.com/zhaojianmou/kotilnImage \n\n
+        &#160;APP版本：1.0.1 \n\n
+    </string>
+
+    <string name="browse_location">位置</string>
+    <string name="browse_show">浏览</string>
+    <string name="browse_map">地图</string>
+    <string name="bar_editor">编辑</string>
+
+    <string name="image_localtion_info_no">没有获取到坐标信息</string>
+
+    <!-- *************************************** BaiduMap *************************************** -->
+    <string name="map_location">位置</string>
+
+
 
 
 </resources>

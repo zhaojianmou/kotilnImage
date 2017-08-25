@@ -1,16 +1,11 @@
 package com.kele.androidstudio.kotlinimage.ui.activity
 
-import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.base.BaseActivity
-import com.kele.androidstudio.kotlinimage.constant.HttpConstant
-import com.kele.androidstudio.kotlinimage.image.ImageManager
 import com.kele.androidstudio.kotlinimage.ui.presenter.MainPersenter
 import com.kele.androidstudio.kotlinimage.ui.view.MainView
-import kotlinx.android.synthetic.main.activity_photobrowse.*
 
 class MainActivity : BaseActivity() {
     val TAG = "MainActivity"
@@ -24,7 +19,6 @@ class MainActivity : BaseActivity() {
         var view = MainView<MainActivity>(this)
         var presenter = MainPersenter<MainView<MainActivity>>(view)
         view.setPersenter(presenter)
-
     }
 
     override fun initData() {

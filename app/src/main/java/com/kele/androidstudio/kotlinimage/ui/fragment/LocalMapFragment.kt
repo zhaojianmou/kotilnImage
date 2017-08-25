@@ -13,6 +13,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.base.BaseFragment
 import com.kele.androidstudio.kotlinimage.image.utils.ExifUtils
+import com.kele.androidstudio.kotlinimage.utils.GlideUtils
 import com.kele.androidstudio.kotlinimage.utils.baidu.LocationUtils
 import kotlinx.android.synthetic.main.activity_localmap.*
 import kotlinx.android.synthetic.main.title_bar_main.*
@@ -25,6 +26,7 @@ class LocalMapFragment : BaseFragment() {
 
     var imagePath = ""
     var mBaiduMap: BaiduMap? = null
+    var textureMapView: TextureMapView? = null
 
 
     companion object {
@@ -47,7 +49,8 @@ class LocalMapFragment : BaseFragment() {
         if (TextUtils.isEmpty(imagePath)) {
             imagePath = arguments.getString(PATH)
         }
-        mBaiduMap = activity.textureMapView.map
+        textureMapView = activity.textureMapView
+        mBaiduMap = textureMapView!!.map
         if (!TextUtils.isEmpty(imagePath) && ExifUtils.isGpsExist(imagePath)) {
             var location = ExifUtils.getPhotoLocation(imagePath)
             var latLng = LocationUtils.gpsToBd09ll(LatLng(location.latitude, location.longitude))
@@ -79,26 +82,24 @@ class LocalMapFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
-        Glide.get(activity).clearMemory()
+        GlideUtils.clearMemory()
     }
 
 
     override fun onResume() {
         super.onResume()
-        activity.textureMapView.onResume()
+        textureMapView!!.onResume()
 
     }
 
     override fun onPause() {
         super.onPause()
-        activity.textureMapView.onPause()
+        textureMapView!!.onPause()
     }
 
     override fun onDestroy() {
-        Glide.get(activity).clearMemory()
-        if (activity.textureMapView != null) {
-            activity.textureMapView.onDestroy()
-        }
+        GlideUtils.clearMemory()
+        textureMapView!!.onDestroy()
         super.onDestroy()
     }
 

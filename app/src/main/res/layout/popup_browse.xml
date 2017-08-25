@@ -20,5 +20,13 @@
         android:background="@color/bg_color_685562"
         android:text="@string/browse_location"/>
 
+    <Button
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="180px"
+        android:layout_marginTop="2px"
+        android:background="@color/bg_color_685562"
+        android:text="@string/browse_map"/>
+
 
 </LinearLayout>

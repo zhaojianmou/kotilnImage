@@ -12,6 +12,12 @@ import com.kele.androidstudio.kotlinimage.base.BaseActivity
 import com.kele.androidstudio.kotlinimage.ui.base.UIManager
 import com.kele.androidstudio.kotlinimage.ui.presenter.SplashPersenter
 import com.kele.androidstudio.kotlinimage.ui.view.SplashView
+import com.tbruyelle.rxpermissions2.Permission
+import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.functions.Action
+import io.reactivex.functions.Consumer
+import android.widget.Toast
+
 
 class SplashActivity : BaseActivity() {
     val TAG = "SplashActivity"
@@ -24,33 +30,24 @@ class SplashActivity : BaseActivity() {
 
 
     override fun initView(savedInstanceState: Bundle?) {
-        var view = SplashView<SplashActivity>(t = this)
-        var persenter = SplashPersenter<SplashView<SplashActivity>>(view)
-        view.setPersenter(persenter)
+//        var view = SplashView<SplashActivity>(this)
+//        var persenter = SplashPersenter<SplashView<SplashActivity>>(view)
+//        view.setPersenter(persenter)
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initData() {
-        if (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ||
-                PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE), 5)
-        } else {
-            UIManager.toMain(this)
-            finish()
-        }
+        RxPermissions(this).request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE).subscribe(Consumer<Boolean> { granted: Boolean ->
+            if (granted) {
+                //同意权限
+                UIManager.toMain(this)
+                finish()
+            } else {
+                //拒绝权限
+                finish()
+            }
+        })
     }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults.size != 1 || grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            UIManager.toMain(this)
-            finish()
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
-
-    }
-
 
 }
+

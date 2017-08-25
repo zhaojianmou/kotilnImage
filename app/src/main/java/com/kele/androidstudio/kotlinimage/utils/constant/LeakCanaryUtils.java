@@ -2,8 +2,11 @@ package com.kele.androidstudio.kotlinimage.utils.constant;
 
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -22,6 +25,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LeakCanaryUtils {
+    private static String TAG = "LeakCanaryUtils";
+
     /**
      * 添加崩溃日志、添加web调试工具、添加内存泄漏
      */
@@ -115,7 +120,15 @@ public class LeakCanaryUtils {
          * @return Qualifier which can specify this installation, like version + flavor.
          */
         public String provideQualifier() {
-            return "unknown";
+            String qualifier = "";
+            try {
+                PackageInfo info = InitApplication.application.getPackageManager()
+                        .getPackageInfo(InitApplication.application.getPackageName(), 0);
+                qualifier += info.versionCode + "_" + info.versionName + "_YYB";
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e(TAG, "provideQualifier exception", e);
+            }
+            return qualifier;
         }
 
         /**
@@ -124,7 +137,7 @@ public class LeakCanaryUtils {
          * @return user id
          */
         public String provideUid() {
-            return "uid";
+            return "1234567890";
         }
 
         /**
@@ -133,7 +146,7 @@ public class LeakCanaryUtils {
          * @return {@link String} like 2G, 3G, 4G, wifi, etc.
          */
         public String provideNetworkType() {
-            return "unknown";
+            return "4g";
         }
 
         /**
@@ -143,7 +156,7 @@ public class LeakCanaryUtils {
          * @return monitor last duration (in hour)
          */
         public int provideMonitorDuration() {
-            return -1;
+            return 9999;
         }
 
         /**
