@@ -1,10 +1,13 @@
 package com.kele.androidstudio.kotlinimage.ui.fragment
 
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.view.View
 import android.widget.Toast
 import com.baidu.mapapi.clusterutil.MarkerManager
+import com.baidu.mapapi.clusterutil.clustering.Cluster
 import com.baidu.mapapi.clusterutil.clustering.ClusterManager
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
@@ -14,11 +17,14 @@ import com.bumptech.glide.request.transition.Transition
 import com.kele.androidstudio.kotlinimage.R
 import com.kele.androidstudio.kotlinimage.baidumap.ClusterBaiduItem
 import com.kele.androidstudio.kotlinimage.base.BaseFragment
+import com.kele.androidstudio.kotlinimage.constant.UIConstant
 import com.kele.androidstudio.kotlinimage.image.ImageManager
 import com.kele.androidstudio.kotlinimage.image.utils.ExifUtils
+import com.kele.androidstudio.kotlinimage.ui.base.UIManager
 import com.kele.androidstudio.kotlinimage.utils.GlideUtils
 import com.kele.androidstudio.kotlinimage.utils.baidu.LocationUtils
 import kotlinx.android.synthetic.main.activity_localmap.*
+import kotlinx.android.synthetic.main.title_bar_main.*
 import java.util.ArrayList
 
 class ListMapFragment : BaseFragment(), BaiduMap.OnMapLoadedCallback {
@@ -42,6 +48,7 @@ class ListMapFragment : BaseFragment(), BaiduMap.OnMapLoadedCallback {
         return R.layout.activity_localmap
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initView(view: View?, savedInstanceState: Bundle?) {
         super.initView(view, savedInstanceState)
         textureMapView = activity.textureMapView
@@ -76,21 +83,41 @@ class ListMapFragment : BaseFragment(), BaiduMap.OnMapLoadedCallback {
         mBaiduMap!!.setMyLocationEnabled(true)
 
         addData()
-        mClusterManager!!.setOnClusterClickListener(ClusterManager.OnClusterClickListener<ClusterBaiduItem> { cluster ->
-            Toast.makeText(activity, "有" + cluster.getSize() + "个点", Toast.LENGTH_SHORT).show()
+        mClusterManager!!.setOnClusterClickListener(ClusterManager.OnClusterClickListener<ClusterBaiduItem> { cluster: Cluster<ClusterBaiduItem>? ->
+//            if (cluster != null) {
+//                Toast.makeText(activity, "有" + cluster.getSize() + "个点", Toast.LENGTH_SHORT).show()
+//            }
             return@OnClusterClickListener false
         })
-        mClusterManager!!.setOnClusterItemClickListener(ClusterManager.OnClusterItemClickListener<ClusterBaiduItem> {
-            Toast.makeText(activity, "点击单个Item", Toast.LENGTH_SHORT).show()
+        mClusterManager!!.setOnClusterItemClickListener(ClusterManager.OnClusterItemClickListener<ClusterBaiduItem> { cluster: ClusterBaiduItem ->
+            var bundle = Bundle()
+            bundle.putString(UIConstant.IMAGE_PATH, "file://" + cluster.mPath)
+            UIManager.toBrowse(activity, bundle)
             return@OnClusterItemClickListener false
         })
 
 
-//        if (!TextUtils.isEmpty(imagePath) && ExifUtils.isGpsExist(imagePath)) {
-//            var location = ExifUtils.getPhotoLocation(imagePath)
-//            var latLng = LocationUtils.gpsToBd09ll(LatLng(location.latitude, location.longitude))
-//            setMapTag(latLng, imagePath)
-//        }
+        mBaiduMap!!.setOnMapStatusChangeListener(object : BaiduMap.OnMapStatusChangeListener {
+            override fun onMapStatusChangeStart(p0: MapStatus?) {
+
+            }
+
+            override fun onMapStatusChange(p0: MapStatus?) {
+
+            }
+
+            override fun onMapStatusChangeFinish(p0: MapStatus?) {
+
+//                addData()
+                //刷新数据
+                mClusterManager!!.cluster()
+
+            }
+
+        })
+
+        getActivity()!!.left.setOnClickListener(View.OnClickListener { activity.finish() })
+        getActivity()!!.titleTv.setText(R.string.map_photo)
     }
 
     fun addData() {
@@ -99,12 +126,7 @@ class ListMapFragment : BaseFragment(), BaiduMap.OnMapLoadedCallback {
         val list = ImageManager.getImageProvide().gpsImages
         if (list != null && list.size > 0) {
 
-            var count = 0
             for (path: String in list) {
-                count++
-                if (count > 10) {
-                    break
-                }
                 var location = ExifUtils.getPhotoLocation(path)
                 var latLng = LocationUtils.gpsToBd09ll(LatLng(location.latitude, location.longitude))
                 var item = ClusterBaiduItem(latLng, path)
@@ -129,7 +151,7 @@ class ListMapFragment : BaseFragment(), BaiduMap.OnMapLoadedCallback {
 //        items.add(ClusterBaiduItem(llF))
 //        items.add(ClusterBaiduItem(llG))
 
-
+        mClusterManager!!.clearItems()
         mClusterManager!!.addItems(items)
     }
 

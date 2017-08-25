@@ -10,7 +10,6 @@
     <string name="about">关于</string>
 
 
-
     <!-- *************************************** filter *************************************** -->
     <string name="filter_none">Original</string>
     <string name="filter_amaro">Amaro</string>
@@ -73,8 +72,7 @@
 
     <!-- *************************************** BaiduMap *************************************** -->
     <string name="map_location">位置</string>
-
-
+    <string name="map_photo">地图相册</string>
 
 
 </resources>
